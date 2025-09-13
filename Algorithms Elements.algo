@@ -1,0 +1,34 @@
+ALGORITHM sentence_analysis
+VAR
+    ch : CHARACTER;               // variable to store each character
+    length, words, vowels : INTEGER;  // counters for length, words, vowels
+
+BEGIN
+    length <- 0                   // initialize length counter
+    words <- 1                    // sentence starts with first word
+    vowels <- 0                   // initialize vowel counter
+
+    REPEAT
+        Read(ch)                  // read one character
+
+        IF ch <> '.' THEN         // stop counting when the point is reached
+            length <- length + 1  // count this character
+
+            // check if character is a space
+            IF ch = ' ' THEN
+                words <- words + 1
+            END_IF
+
+            // check if character is a vowel (upper or lower case)
+            IF (ch = 'A') OR (ch = 'E') OR (ch = 'I') OR (ch = 'O') OR (ch = 'U') OR
+               (ch = 'a') OR (ch = 'e') OR (ch = 'i') OR (ch = 'o') OR (ch = 'u') THEN
+                vowels <- vowels + 1
+            END_IF
+        END_IF
+    UNTIL (ch = '.')              // loop ends when period is read
+
+    // display results
+    Write("Length = ", length)
+    Write("Words = ", words)
+    Write("Vowels = ", vowels)
+END
